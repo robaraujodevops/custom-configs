@@ -1,0 +1,18 @@
+#
+# This file is for my custom sudo configs.
+#
+
+Defaults	log_host, log_year, logfile="/var/log/sudo.log" 
+Defaults	log_input, log_output
+Defaults	lecture="always"
+Defaults	lecture_file="/etc/lecture_file.txt"
+
+# Host alias specification
+Host_Alias PC=my-opstack
+
+# User alias specification
+User_Alias ADMIN=robaraujodevops
+
+# Allow members of group GOODMODE to run any command without password 
+%godmode	PC=(ALL:ADMIN) NOPASSWD:ALL
+
