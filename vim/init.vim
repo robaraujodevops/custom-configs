@@ -37,7 +37,7 @@ set number
 set relativenumber
 set mouse=a
 set inccommand=split
-set clipboard=unnamed
+set clipboard=unnamedplus
 set autoindent
 set smartindent
 set expandtab
@@ -48,6 +48,7 @@ set nobackup
 set incsearch
 set scrolloff=8
 set signcolumn=yes
+set ma
 let mapleader="\<space>"
 let g:NERDTreeGitStatusUseNerdFonts = 1
 
@@ -58,6 +59,8 @@ nnoremap <silent> <leader>= <insert>`<esc>$<insert><right>`<esc>
 vnoremap <silent> <leader>+ "*x<insert>```<cr><esc>gp$<insert><right><cr><esc>0<insert>```<cr><esc>
 
 nnoremap <silent> <c-O> <insert><cr><esc>
+
+nnoremap <silent> <leader>q :bnext<cr> 
 
 nnoremap <silent> <leader>y "*y<cr>
 nnoremap <silent> <leader>Y "+yy<cr>
@@ -89,4 +92,8 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
+let g:NERDTreeShowHidden = 1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
