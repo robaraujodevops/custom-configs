@@ -1,10 +1,10 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=Solarized
+ColorScheme=DarkPastels
 DimmValue=128
-Font=FiraCode Nerd Font,10,-1,5,53,0,0,0,0,0,Retina
-LineSpacing=0
+Font=FiraCode Nerd Font,11,-1,5,53,0,0,0,0,0,Retina
+LineSpacing=3
 TabColor=invalid
 UseFontLineChararacters=false
 
@@ -18,7 +18,7 @@ UseCustomCursorColor=false
 DefaultEncoding=UTF-8
 
 [General]
-Command=/bin/bash
+Command=/bin/zsh
 DimWhenInactive=false
 Environment=TERM=xterm-256color,COLORTERM=truecolor
 Icon=utilities-terminal
