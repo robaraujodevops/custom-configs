@@ -17,7 +17,18 @@ Plug 'scrooloose/nerdtree-project-plugin'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'vim-airline/vim-airline'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+Plug 'jparise/vim-graphql'        " GraphQL syntax
+Plug 'neoclide/coc.nvim' , { 'branch' : 'release' }
+Plug 'mattn/emmet-vim'
+Plug 'gregsexton/MatchTag'
+Plug 'chemzqm/vim-jsx-improve'
 call plug#end()
 
 colorscheme gruvbox
@@ -51,6 +62,7 @@ set signcolumn=yes
 set ma
 let mapleader="\<space>"
 let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:coc_global_extensions = [ 'coc-tsserver' ]
 
 nnoremap <silent> <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <silent> <leader>sv :source ~/.config/nvim/init.vim<cr>
@@ -78,6 +90,16 @@ nnoremap <silent> <c-n> :NERDTree<cr>
 nnoremap <silent> <c-t> :NERDTreeToggle<cr>
 nnoremap <silent> <c-f> :NERDTreeFind<cr>
 
+" Remap keys for applying codeAction to the current line.
+nnoremap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nnoremap <leader>qf  <Plug>(coc-fix-current)
+" GoTo code navigation.
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
+
 autocmd VimEnter * NERDTree | wincmd p
 
 autocmd StdinReadPre * let s:std_in=1
@@ -97,3 +119,4 @@ let g:NERDTreeShowHidden = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
+let g:user_emmet_leader_key=','
