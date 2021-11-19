@@ -29,6 +29,7 @@ Plug 'neoclide/coc.nvim' , { 'branch' : 'release' }
 Plug 'mattn/emmet-vim'
 Plug 'gregsexton/MatchTag'
 Plug 'chemzqm/vim-jsx-improve'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 colorscheme gruvbox
