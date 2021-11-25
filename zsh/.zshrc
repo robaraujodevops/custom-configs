@@ -72,3 +72,7 @@ source $ZDOTDIR/aliases
 bindkey -v
 #bindkey '^R' history-incremental-search-backward
 
+if [ -z "$TMUX" ]
+then
+    tmux attach -t TMUX || tmux new -s TMUX
+fi
