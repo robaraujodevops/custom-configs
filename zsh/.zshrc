@@ -71,4 +71,3 @@ source $ZDOTDIR/aliases
 ## BIND KEYS
 bindkey -v
 #bindkey '^R' history-incremental-search-backward
-
