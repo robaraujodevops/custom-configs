@@ -68,6 +68,12 @@ source $ZDOTDIR/completion.zsh
 ## MY ALIAS
 source $ZDOTDIR/aliases
 
+## XENV VARS
+XENV_FILE=$ZDOTDIR/.zshxenv
+if [ -f $XENV_FILE ]; then
+  source $XENV_FILE
+fi
+
 ## BIND KEYS
 bindkey -v
 #bindkey '^R' history-incremental-search-backward
