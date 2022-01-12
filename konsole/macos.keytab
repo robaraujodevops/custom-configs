@@ -1,24 +1,32 @@
-# [README.default.Keytab] Default Keyboard Table
-#
-# To customize your keyboard, copy this file to something ending with
-# .keytab and change it to meet you needs.
-#
-# Please read the README-KeyTab and the doc/user/README.keyboard files
-# in this case.
-#
+# [macos.keytab] Konsole Keyboard Table
 # --------------------------------------------------------------
 
-keyboard "Default (XFree 4)"
+keyboard "macOS"
 
 # --------------------------------------------------------------
-#
-# Note that this particular table is a "risc" version made to
-# ease customization without bothering with obsolete details.
-# See VT100.keytab for the more hairy stuff.
-#
+
+# TODO: There's something wrong in Konsole that these are
+# required. 
+# Konsole's files are in the wrong location in macOS.
+# All Konsole files should be installed into
+# ~/Library/Application Support/konsole/
+
+key A+Ctrl : "\x01"     # goto start of line
+key C+Ctrl : "\x03"     # interrupt
+key D+Ctrl : "\x04"     # logout "exit"
+key E+Ctrl : "\x05"     # goto end of line
+key L+Ctrl : "\x0C"     # clear terminal screen
+key R+Ctrl : "\x12"     # invoke shell history
+key U+Ctrl : "\x15"     # clear current line
+key V+Ctrl : "\x16"     #
+key W+Ctrl : "\x17"     # erase the word preceding to the cursor position
+#key Z+Ctrl : "\x1a"
+
+key Delete      +Shift   : "\x7f"
+
 # --------------------------------------------------------------
 
-# common keys
+# common keys - below is same as default.keytab
 
 key Escape             : "\E"
 
@@ -27,11 +35,6 @@ key Tab   +Shift+Ansi  : "\E[Z"
 key Tab   +Shift-Ansi  : "\t"
 key Backtab     +Ansi  : "\E[Z"
 key Backtab     -Ansi  : "\t"
-
-key Tab       +Control+Ansi : "\E[27;5;9~"
-key Backtab   +Control+Ansi : "\E[27;6;9~"
-key Tab       +Control-Ansi : "\t"
-key Backtab   +Control-Ansi : "\t"
 
 key Return-Shift-NewLine : "\r"
 key Return-Shift+NewLine : "\r\n"
