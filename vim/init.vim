@@ -86,12 +86,14 @@ set nocompatible
 let mapleader="\<space>"
 nnoremap <silent> <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <silent> <leader>sv :source ~/.config/nvim/init.vim<cr>
+inoremap <silent> <c-s> <ESC>:w<insert><cr>
+nnoremap <silent> <c-s> :w<cr>
 " Custom Inserts
 nnoremap <silent> <leader>= <insert>`<esc>$<insert><right>`<esc>
 vnoremap <silent> <leader>+ "*x<insert>```<cr><esc>gp$<insert><right><cr><esc>0<insert>```<cr><esc>
 nnoremap <silent> <c-O> <insert><cr><esc>
 " ?
-nnoremap <silent> <c-f> :Ag<space>
+nnoremap <silent> <c-f>:Ag<space>
 " Buffer Things
 nnoremap <silent> <leader>q :bp<cr>
 " Copy/Paste Custom Tings
