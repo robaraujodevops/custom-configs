@@ -2,9 +2,18 @@
 if [ -z "$TMUX" ]; then
   TMUX_SESSIONS=$(tmux ls -F "#{session_name}")
   if ! [[ $TMUX_SESSIONS =~ "VPN" ]]; then
+    echo "Enter Keepass password:"
+    read -s pass
+    declare data=($(keepassxc-cli show -t -a UserName -a Password ~/Passwords.kdbx Gsuite <<< $pass | tail -n +2))
     tmux -u new -s VPN -d;
-    tmux send-keys -t VPN "sudo openvpn --config ~/client.ovpn" Enter
-    tmux send-keys -t VPN "$(2fa openvpn)" Enter
+    sleep 1
+    tmux send-keys -t VPN "sudo openvpn --config ~/vpn-files/profile.ovpn" Enter
+    sleep 1
+    tmux send-keys -t VPN "$data[1]" Enter
+    sleep 1
+    tmux send-keys -t VPN "$data[2]" Enter
+    sleep 1
+    tmux send-keys -t VPN "$data[3]" Enter
   fi
 
   if ! [[ $TMUX_SESSIONS =~ "DEV" ]]; then

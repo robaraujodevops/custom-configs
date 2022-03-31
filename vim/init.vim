@@ -33,6 +33,8 @@ Plug 'neoclide/coc.nvim' , { 'branch' : 'release' }
 Plug 'mattn/emmet-vim'
 " HTML Tags
 Plug 'gregsexton/MatchTag'
+" Markdown Preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " NERDTree
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -52,6 +54,11 @@ call plug#end()
 colorscheme gruvbox
 highlight Normal guibg=none
 autocmd VimEnter * hi Normal ctermbg=none
+
+" Folding
+set foldmethod=indent
+set nofoldenable
+nnoremap <silent> <leader>z za<cr>
 
 " Startify
 autocmd VimEnter * Startify
@@ -161,3 +168,6 @@ let g:UltiSnipsJumpForwardTrigger  = "<c-b>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
 " Identention
 let g:indentLine_char = '┊'
+" MarkdownPreview
+nnoremap <leader>m <Plug>MarkdownPreview
+
