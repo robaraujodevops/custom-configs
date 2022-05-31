@@ -48,6 +48,7 @@ Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/indentLine'
 " Don't know what it's for
 Plug 'w0rp/ale'
+Plug 'tpope/vim-fugitive', { 'tag': '*' }
 call plug#end()
 
 " Colors

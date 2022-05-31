@@ -17,8 +17,16 @@ if [ -z "$TMUX" ]; then
   fi
 
   if ! [[ $TMUX_SESSIONS =~ "DEV" ]]; then
+    declare GITLAB_DATA=$(keepassxc-cli show -t -a UserName -a Password ~/Passwords.kdbx GitlabToken <<< $pass | tail -n +2)
+    declare GITLABLEG_DATA=$(keepassxc-cli show -t -a UserName -a Password ~/Passwords.kdbx GitlabLegToken <<< $pass | tail -n +2)
+    
     tmux -u new -s DEV-1 -d;
     tmux a -t DEV-1;
+    sleep 1
+    tmux send-keys -t  "export GITLAB_TK=$GITLAB_DATA[2]" Enter
+    sleep 1
+    tmux send-keys -t  "export GITLABLEG_TK=$GITLABLEG_DATA[2]" Enter
+
   else
     DEV_SESSIONS=$(grep 'DEV' <<< "$TMUX_SESSIONS" | wc -l)
     if [[ $DEV_SESSIONS -ge 1 ]]; then

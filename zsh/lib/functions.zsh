@@ -226,3 +226,7 @@ function omz_urldecode {
 
   echo -E "$decoded"
 }
+
+function randomPass (){
+  </dev/urandom tr -dc '12345!@#$%qwertQWERTasdfgASDFGzxcvbZXCVB' | head -c${1:-$1}; echo ""
+}
