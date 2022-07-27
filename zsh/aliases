@@ -87,11 +87,6 @@ alias doc="cd $HOME/Documents"
 alias dow="cd $HOME/Downloads"
 alias dot="cd $HOME/.config"
 
-# Genesis
-gclogin() {
-  make gcloud-login remote-bootstrap="$1";
-}
-
 # Sec
 function genk() {
   local pkey=~/.ssh/id_ed25519

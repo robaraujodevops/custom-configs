@@ -29,3 +29,4 @@ export PATH="$COMPOSER_HOME/vendor/bin:$PATH"                       # COMPOSER
 export PATH="$GOBIN:$PATH"                                          # GOBIN
 export PATH="$NPM_BIN:$PATH"                                        # NPM
 
+export SSH_PRIVATE_KEY=$(cat ~/.ssh/id_ed25519)

@@ -69,9 +69,9 @@ source $ZDOTDIR/completion.zsh
 source $ZDOTDIR/aliases
 
 ## XENV VARS
-XENV_FILE=$ZDOTDIR/.zshxenv
-if [ -f $XENV_FILE ]; then
-  source $XENV_FILE
+ENV_FILE=$ZDOTDIR/.zshenv
+if [ -f $ENV_FILE ]; then
+  source $ENV_FILE
 fi
 
 ## BIND KEYS
