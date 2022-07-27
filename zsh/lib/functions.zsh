@@ -227,6 +227,68 @@ function omz_urldecode {
   echo -E "$decoded"
 }
 
-function randomPass (){
+function randomPass () {
   </dev/urandom tr -dc '12345!@#$%qwertQWERTasdfgASDFGzxcvbZXCVB' | head -c${1:-$1}; echo ""
+}
+
+function gcLogin () {
+  make gcloud-login remote-bootstrap="$1";
+}
+
+function initDev () {
+  TMUX_SESSIONS=$(tmux ls -F "#{session_name}")
+  
+  if [ -z "$TMUX" ]; then
+    if ! [[ $TMUX_SESSIONS =~ "VPN" ]]; then
+      echo "Enter Keepass password:"
+      read -s pass
+      declare data=($(keepassxc-cli show -t -a UserName -a Password ~/Passwords.kdbx Gsuite <<< $pass | tail -n +2))
+      tmux -u new -s VPN -d;
+      sleep 1
+      tmux send-keys -t VPN "sudo openvpn --config ~/vpn-files/profile.ovpn" Enter
+      sleep 1
+      tmux send-keys -t VPN "$data[1]" Enter
+      sleep 1
+      tmux send-keys -t VPN "$data[2]" Enter
+      sleep 1
+      tmux send-keys -t VPN "$data[3]" Enter
+    fi
+
+    if ! [[ $TMUX_SESSIONS =~ "DEV" ]]; then
+      declare GITLAB_DATA=$(keepassxc-cli show -t -a UserName -a Password ~/Passwords.kdbx GitlabToken <<< $pass | tail -n +2)
+      declare GITLABLEG_DATA=$(keepassxc-cli show -t -a UserName -a Password ~/Passwords.kdbx GitlabLegToken <<< $pass | tail -n +2)
+      
+      tmux -u new -s DEV-1 -d;
+      tmux a -t DEV-1;
+      sleep 1
+      tmux send-keys -t  "export GITLAB_TK=$GITLAB_DATA[2]" Enter
+      sleep 1
+      tmux send-keys -t  "export GITLABLEG_TK=$GITLABLEG_DATA[2]" Enter
+
+    else
+      DEV_SESSIONS=$(grep 'DEV' <<< "$TMUX_SESSIONS" | wc -l)
+      if [[ $DEV_SESSIONS -ge 1 ]]; then
+        NEW_SESSION="DEV-$((++DEV_SESSIONS))"
+        tmux -u new -s "${NEW_SESSION}" -d;
+        tmux a -t "${NEW_SESSION}";
+      else
+        tmux a -t DEV-1;
+      fi
+    fi
+  else
+    if ! [[ $TMUX_SESSIONS =~ "VPN" ]]; then
+      echo "Enter Keepass password:"
+      read -s pass
+      declare data=($(keepassxc-cli show -t -a UserName -a Password ~/Passwords.kdbx Gsuite <<< $pass | tail -n +2))
+      tmux -u new -s VPN -d;
+      sleep 1
+      tmux send-keys -t VPN "sudo openvpn --config ~/vpn-files/profile.ovpn" Enter
+      sleep 1
+      tmux send-keys -t VPN "$data[1]" Enter
+      sleep 1
+      tmux send-keys -t VPN "$data[2]" Enter
+      sleep 1
+      tmux send-keys -t VPN "$data[3]" Enter
+    fi
+  fi
 }
