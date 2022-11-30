@@ -1,0 +1,2 @@
+## Get largest file and tail the file to check the content
+du /var/log/mysql/* -sh | sort -hr | head | awk 'NR==1 { print $2 }' | xargs tail -f
