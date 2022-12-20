@@ -1,7 +1,7 @@
 call plug#begin()
 " Search
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+"Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 " Color Scheme
@@ -13,7 +13,7 @@ Plug 'sheerun/vim-polyglot'
 " Auto close parentheses and repeat by dot dot dot...
 Plug 'cohama/lexima.vim'
 " Snippets
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Airline
 Plug 'vim-airline/vim-airline'
@@ -32,9 +32,6 @@ Plug 'chemzqm/vim-jsx-improve'
 Plug 'jparise/vim-graphql'        " GraphQL syntax
 " GO
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Completition/Emmet
-Plug 'neoclide/coc.nvim' , {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-Plug 'mattn/emmet-vim'
 " HTML Tags
 Plug 'gregsexton/MatchTag'
 " Markdown Preview
@@ -57,6 +54,9 @@ Plug 'tpope/vim-fugitive', { 'tag': '*' }
 Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 " Multi cursors
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Completition/Emmet
+Plug 'neoclide/coc.nvim' , {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 " Colors
