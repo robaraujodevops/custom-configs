@@ -39,6 +39,15 @@ is_plugin() {
     || builtin test -f $base_dir/plugins/$name/_$name
 }
 
+for plugin ($plugins); do
+  if ! is_plugin $ZDOTDIR $plugin ]; then
+    if [ "$plugin" == "zsh-" ]; then
+      git clone https://github.com/zsh-users/$plugin/ \
+        $ZDOTDIR/plugins/$plugin
+    fi
+  fi 
+done
+
 # Load to fpath all plugins
 for plugin ($plugins); do
   if is_plugin $ZDOTDIR $plugin; then
@@ -55,7 +64,14 @@ for plugin ($plugins); do
   fi
 done
 
-## CUSTOM PROMPT THEME
+## Fzf install
+if [ -f ~/.zsh ]; then
+
+else
+
+fi
+
+# USTOM PROMPT THEME
 ZSH_THEME="pimped"
 
 # Load the theme
