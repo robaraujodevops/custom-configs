@@ -1,7 +1,7 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
-export ZDOTDIR="$HOME/Projects/custom-configs/zsh"
+export ZDOTDIR="$HOME/my-projects/custom-configs/zsh"
 
 # editor
 export EDITOR="nvim"
@@ -34,4 +34,3 @@ export SSH_PRIVATE_KEY=$(cat ~/.ssh/id_ed25519)
 
 # GO
 export GO111MODULE=on
-export GOPRIVATE=gitlab.neoway.com.br
