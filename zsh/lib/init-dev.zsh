@@ -2,7 +2,7 @@ function createVPNSession () {
   tmux -u new -s VPN -d;
   sleep 1
   tmux send-keys -t VPN "vpn-start" Enter
-  sleep 1
+  sleep 15
   tmux send-keys -t VPN "while ! netstat -i | grep tun0; do echo Waiting tun0 interface!; sleep 1; done; sudo resolvectl dns tun0 10.10.10.2" Enter
 }
 

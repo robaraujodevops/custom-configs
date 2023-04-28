@@ -31,6 +31,7 @@ export PATH="$NPM_BIN:$PATH"                                        # NPM
 
 # SSH_PRIVATE_KEY
 export SSH_PRIVATE_KEY=$(cat ~/.ssh/id_ed25519)
+export SESSION_LOGIN=Y
 
-# GO
+#GO
 export GO111MODULE=on
