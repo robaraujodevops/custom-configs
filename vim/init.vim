@@ -56,6 +56,10 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --producti
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Completition/Emmet
 Plug 'neoclide/coc.nvim' , {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+
 Plug 'mattn/emmet-vim'
 call plug#end()
 
@@ -259,8 +263,8 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 inoremap <silent> <c-s> <ESC>:w<insert><cr>
 nnoremap <silent> <c-s> :w<cr>
 " Custom Inserts
-nnoremap <silent> <leader>= <insert>`<esc>$<insert><right>`<esc>
-nnoremap <silent> <leader>" <insert>"<esc>$<insert><right>"<esc>
+nnoremap <silent> <leader>' ciw''<Esc>P
+nnoremap <silent> <leader>" ciw""<Esc>P
 vnoremap <silent> <leader>+ "*x<insert>```<cr><esc>gp$<insert><right><cr><esc>0<insert>```<cr><esc>
 nnoremap <silent> <c-O> <insert><cr><esc>
 " ?
