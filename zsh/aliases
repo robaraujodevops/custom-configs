@@ -118,3 +118,19 @@ function genk() {
   ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -C "$1"
 }
 
+# TMUX
+txns () {
+  local session_name="$1"
+  tmux -u new -s "${session_name}" -d;
+  tmux a -t "${session_name}";
+}
+
+txas () {
+  local session_name="$1"
+  tmux a -t "${session_name}";
+}
+
+txks () {
+  local session_name="$1"
+  tmux kill-ses -t "${session_name}";
+}
