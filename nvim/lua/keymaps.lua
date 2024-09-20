@@ -19,9 +19,14 @@ keyset('n', '<leader>z', 'za<cr>', { remap = true, silent = true })
 keyset('n', '<A-S>', '<cmd>Startify<cr>', { remap = true, silent = true })
 -- MarkdownPreview
 keyset('n', '<leader>m', '<Plug>MarkdownPreview<cr>', { remap = true, silent = true })
-
+-- Copy/Paste Custom Tings
+keyset('n', '<leader>y', '"*y<cr>', { remap = true, silent = true })
+keyset('n', '<leader>Y', '"+yy<cr>', { remap = true, silent = true })
+keyset('n', '<leader>x', '"*x<cr>', { remap = true, silent = true })
+keyset('n', '<leader>X', '"+x<cr>', { remap = true, silent = true })
+keyset('n', '<leader>p', '"*p<cr>', { remap = true, silent = true })
+keyset('n', '<leader>P', '"+p<cr>', { remap = true, silent = true })
 -- COC
-
 local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
 keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
 keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
@@ -127,3 +132,7 @@ keyset("n", "<space>j", ":<C-u>CocNext<cr>", opts)
 keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
 -- Resume latest coc list
 keyset("n", "<space>p", ":<C-u>CocListResume<cr>", opts)
+-- Buffer Things
+keyset('n', '<A-w>', ':bp<cr>', { remap = true, silent = false })
+keyset('n', '<A-Right>', ':bn<cr>', { remap = true, silent = true })
+keyset('n', '<A-q>', ':bp<bar>sp<bar>bn<bar>bd<cr>', { remap = true, silent = true })

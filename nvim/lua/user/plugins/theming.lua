@@ -1,5 +1,10 @@
 return {
-  {'ryanoasis/vim-devicons'},
+  {'ryanoasis/vim-devicons',
+  init = function()
+    vim.go.WebDevIconsNerdTreeBeforeGlyphPadding = ""
+    vim.go.WebDevIconsUnicodeDecorateFolderNodes = "v:true"
+  end
+  },
   {'gruvbox-community/gruvbox'},
   {'dracula/vim',
     name='dracula',
