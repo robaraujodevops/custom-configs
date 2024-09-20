@@ -71,7 +71,7 @@ alias port="netstat -tulpn | grep"
 # docker
 alias docki="docker inspect"                                                    # display the information about a container
 alias docke='docker exec -t -i'                                                 # going inside a container
-alias dockrm='docker rm -f $(docker ps -a -q)'                                     # delete every containers / images
+alias dockrm="for i in $(docker ps -a | awk '{if (NR!=1) print $1}'); do docker rm -f $i; done"                                     # delete every containers / images
 alias dockDE='docker rm $(docker ps -a -q) && docker rmi $(docker images -q)'   # delete every containers / images
 alias dockstats='docker stats $(docker ps -q)'                                  # stats on images
 alias dockls='docker ps'                                                        # list docker containers
