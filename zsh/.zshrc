@@ -41,7 +41,7 @@ is_plugin() {
 
 for plugin ($plugins); do
   if ! is_plugin $ZDOTDIR $plugin ]; then
-    if [ "$plugin" == "zsh-" ]; then
+    if [[ "$plugin" =~ "zsh-" ]]; then
       git clone https://github.com/zsh-users/$plugin/ \
         $ZDOTDIR/plugins/$plugin
     fi
@@ -105,6 +105,10 @@ if [ ! -f $NETRC_FILE ]; then
   machine ${GITLAB_HOST} login ${GITLAB_USER} password ${GITLAB_TOKEN}
 EOF
 fi
+
+unset NPM_CONFIG_PREFIX
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 ## BIND KEYS
 bindkey -v

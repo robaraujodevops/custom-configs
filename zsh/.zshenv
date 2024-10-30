@@ -1,7 +1,7 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
-export ZDOTDIR="$HOME/my-projects/custom-configs/zsh"
+export ZDOTDIR="$HOME/workspace/custom-configs/zsh"
 
 # editor
 export EDITOR="nvim"
@@ -28,6 +28,7 @@ export NPM_CONFIG_PREFIX="$XDG_CONFIG_HOME/node_modules"
 export PATH="$COMPOSER_HOME/vendor/bin:$PATH"                       # COMPOSER
 export PATH="$GOBIN:$PATH"                                          # GOBIN
 export PATH="$NPM_BIN:$PATH"                                        # NPM
+export PATH="/opt/nvim-linux64/bin:$PATH"
 
 # SSH_PRIVATE_KEY
 export SSH_PRIVATE_KEY=$(cat ~/.ssh/id_ed25519)
