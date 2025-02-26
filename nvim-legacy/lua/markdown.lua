@@ -1,1 +1,0 @@
-vim.keymap.set('n', '<leader>m', '<Plug>MarkdownPreview', { remap = true, silent = true })
