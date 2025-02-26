@@ -36,3 +36,4 @@ export SESSION_LOGIN=Y
 
 #GO
 export GO111MODULE=on
+export TERM="xterm-256color"

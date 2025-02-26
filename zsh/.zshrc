@@ -6,14 +6,6 @@ setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
 
-## FZF
-if [ $(command -v "fzf") ]; then
-    source ~/.fzf.zsh
-
-    # Search with fzf and open selected file with Vim
-    bindkey -s '^v' 'vim $(fzf);^M'
-fi
-
 ## MY ALIAS
 source $ZDOTDIR/aliases
 
@@ -64,13 +56,6 @@ for plugin ($plugins); do
   fi
 done
 
-## Fzf install
-if [ -f ~/.zsh ]; then
-
-else
-
-fi
-
 # USTOM PROMPT THEME
 ZSH_THEME="pimped"
 
@@ -113,9 +98,15 @@ export NVM_DIR="$HOME/.nvm"
 ## BIND KEYS
 bindkey -v
 #bindkey '^R' history-incremental-search-backward
+#
+## FZF
+## Fzf install
+if [ -f ~/.fzf.zsh ]; then
+    source ~/.fzf.zsh
+fi
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/roberto-araujo/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/roberto-araujo/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/roberto-araujo/google-cloud-sdk/path.zsh.inc' ]; then . '/home/roberto-araujo/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/roberto-araujo/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/roberto-araujo/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/home/roberto-araujo/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/roberto-araujo/google-cloud-sdk/completion.zsh.inc'; fi
