@@ -1,6 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    version = "*",
     --- Add or modify the `opts` table for diagnostics
     opts = function(_, opts)
       -- If there's already an opts.diagnostics table, we merge/override.

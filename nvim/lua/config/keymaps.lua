@@ -11,3 +11,11 @@ keyset("n", "<A-q>", ":bp<bar>sp<bar>bn<bar>bd<cr>", { remap = true, silent = tr
 
 -- Toggle auto save
 keyset("n", "<leader>as", ":ASToggle<CR>", { desc = "Toggle AutoSave" })
+
+-- Normal + Visual: <Home> -> start of line, <End> -> end of line
+keyset({ "n", "v" }, "<Home>", "0", { desc = "Go to start of line" })
+keyset({ "n", "v" }, "<End>", "$", { desc = "Go to end of line" })
+
+-- (Optional) Insert mode: <Home> -> move cursor to start, <End> -> move cursor to end
+keyset("i", "<Home>", "<C-o>0", { desc = "Go to start of line (insert)" })
+keyset("i", "<End>", "<C-o>$", { desc = "Go to end of line (insert)" })
