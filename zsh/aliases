@@ -15,13 +15,16 @@ alias gr='git branch -r'
 alias gplo='git pull origin'
 alias gb='git branch '
 alias gc='git commit'
+alias gca='git commit --amend'
 alias gd='git diff'
 alias gco='git checkout '
+alias gcob='git checkout -b '
 alias gl='git log'
 alias gr='git remote'
 alias grs='git remote show'
 alias glo='git log --pretty="oneline"'
 alias glol='git log --graph --oneline --decorate'
+alias glbr="git for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:relative) %(authorname)' refs/heads/ | head -n 5"
 function gcp() {
   git add .
   git commit -m "$1"

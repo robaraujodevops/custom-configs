@@ -105,6 +105,8 @@ if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
 fi
 
+eval "$(zoxide init zsh)"
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/roberto-araujo/google-cloud-sdk/path.zsh.inc' ]; then . '/home/roberto-araujo/google-cloud-sdk/path.zsh.inc'; fi
 
