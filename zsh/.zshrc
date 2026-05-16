@@ -83,7 +83,7 @@ fi
 
 ## NETrc
 NETRC_FILE=~/.netrc
-if [ ! -f $NETRC_FILE ]; then
+if [ ! -f $NETRC_FILE ] && [ -n "$GITLAB_HOST" ] && [ -n "$GITLAB_USER" ] && [ -n "$GITLAB_TOKEN" ]; then
   touch ~/.netrc
   chmod 600 ~/.netrc
   cat << EOF > ~/.netrc
@@ -108,9 +108,11 @@ fi
 eval "$(zoxide init zsh)"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/roberto-araujo/google-cloud-sdk/path.zsh.inc' ]; then . '/home/roberto-araujo/google-cloud-sdk/path.zsh.inc'; fi
+GOOGLE_CLOUD_SDK_HOME="${GOOGLE_CLOUD_SDK_HOME:-$HOME/google-cloud-sdk}"
+if [ -f "$GOOGLE_CLOUD_SDK_HOME/path.zsh.inc" ]; then . "$GOOGLE_CLOUD_SDK_HOME/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/roberto-araujo/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/roberto-araujo/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$GOOGLE_CLOUD_SDK_HOME/completion.zsh.inc" ]; then . "$GOOGLE_CLOUD_SDK_HOME/completion.zsh.inc"; fi
 
-. "$HOME/.config/local/share/../bin/env"
+LOCAL_BIN_ENV="${LOCAL_BIN_ENV:-$HOME/.config/local/bin/env}"
+if [ -f "$LOCAL_BIN_ENV" ]; then . "$LOCAL_BIN_ENV"; fi

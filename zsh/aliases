@@ -1,8 +1,8 @@
 #!/bin/zsh
 # zsh
-alias ezsh="nvim ~/.config/.my-zsh/.zshrc"
-alias ealias="nvim ~/.config/.my-zsh/aliases"
-alias szsh="source ~/.config/.my-zsh/.zshrc"
+alias ezsh='nvim "$ZDOTDIR/.zshrc"'
+alias ealias='nvim "$ZDOTDIR/aliases"'
+alias szsh='source "$ZDOTDIR/.zshrc"'
 
 # git
 alias gs='git status'
@@ -48,7 +48,7 @@ alias l='ls -CF'
 alias lah='ls -alh'
 alias cp='cp -avr'
 alias mv='mv -v'
-alias rm='rm -fr'
+alias rm='rm -I'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -81,12 +81,25 @@ alias port="netstat -tulpn | grep"
 # docker
 alias docki="docker inspect"                                                    # display the information about a container
 alias docke='docker exec -t -i'                                                 # going inside a container
-alias dockrm="for i in $(docker ps -a | awk '{if (NR!=1) print $1}'); do docker rm -f $i; done"                                     # delete every containers / images
-alias dockDE='docker rm $(docker ps -a -q) && docker rmi $(docker images -q)'   # delete every containers / images
+function dockrm() {
+  echo "This will remove all Docker containers."
+  read -q "confirm?Continue? [y/N] " || return 1
+  echo
+  docker ps -a -q | xargs -r docker rm -f
+}
+function dockDE() {
+  echo "This will remove all Docker containers and images."
+  read -q "confirm?Continue? [y/N] " || return 1
+  echo
+  docker ps -a -q | xargs -r docker rm -f
+  docker images -q | xargs -r docker rmi
+}
 alias dockstats='docker stats $(docker ps -q)'                                  # stats on images
 alias dockls='docker ps'                                                        # list docker containers
 alias dockimg='docker images'                                                   # list images installed
-alias dockprune='docker system prune -a'                                        # prune everything
+function dockprune() {
+  docker system prune -a
+}
 alias dockceu='docker-compose run --rm -u $(id -u):$(id -g)'                    # run as the host user
 alias dockce='docker-compose run --rm'
 alias docker-compose-dev='docker-compose -f docker-compose-dev.yml' # run a different config file than the default one
@@ -99,10 +112,28 @@ alias dow="cd $HOME/Downloads"
 alias dot="cd $HOME/.config"
 
 # VPN
-alias vpn-start="/usr/bin/openvpn3 session-start --config /home/roberto-araujo/vpn-files/profile-saml.ovpn"
-alias vpn-stop="/usr/bin/openvpn3 session-manage --disconnect --config /home/roberto-araujo/vpn-files/profile-saml.ovpn"
-alias vpn-log="/usr/bin/openvpn3 log --config /home/roberto-araujo/vpn-files/profile-saml.ovpn"
-alias vpn-stats="/usr/bin/openvpn3 session-stats --config /home/roberto-araujo/vpn-files/profile-saml.ovpn" 
+function _vpn_config() {
+  if [ -z "$VPN_CONFIG_FILE" ]; then
+    echo "VPN_CONFIG_FILE is not set. Define it in $ZDOTDIR/.zshxenv." >&2
+    return 1
+  fi
+}
+function vpn-start() {
+  _vpn_config || return 1
+  /usr/bin/openvpn3 session-start --config "$VPN_CONFIG_FILE"
+}
+function vpn-stop() {
+  _vpn_config || return 1
+  /usr/bin/openvpn3 session-manage --disconnect --config "$VPN_CONFIG_FILE"
+}
+function vpn-log() {
+  _vpn_config || return 1
+  /usr/bin/openvpn3 log --config "$VPN_CONFIG_FILE"
+}
+function vpn-stats() {
+  _vpn_config || return 1
+  /usr/bin/openvpn3 session-stats --config "$VPN_CONFIG_FILE"
+}
 alias vpn-ps="ps auxfwww | grep openvpn"
 alias vpn-kill="pgrep openvpn | xargs sudo kill -9"
 

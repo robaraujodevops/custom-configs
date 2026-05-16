@@ -30,8 +30,9 @@ to bootstrap or restore a workstation.
 
 ## Bootstrap Flow
 
-1. Clone the repository into the expected local path. Current shell and tmux
-   config hard-code paths under `$HOME/workspace/custom-configs`.
+1. Clone the repository into the desired local path. The Zsh config derives
+   `CUSTOM_CONFIGS_HOME` from the real path of `zsh/.zshenv`; set
+   `CUSTOM_CONFIGS_HOME` only when you need to override that location.
 2. Initialize plugin submodules:
 
    ```bash
@@ -41,15 +42,15 @@ to bootstrap or restore a workstation.
 3. Link Zsh environment loading:
 
    ```bash
-   ln -s ~/workspace/custom-configs/zsh/.zshenv ~/.zshenv
+   ln -s /path/to/custom-configs/zsh/.zshenv ~/.zshenv
    chsh -s /bin/zsh
    ```
 
 4. Create the optional local-only Zsh secret/override file when needed:
 
    ```bash
-   touch ~/workspace/custom-configs/zsh/.zshxenv
-   chmod 600 ~/workspace/custom-configs/zsh/.zshxenv
+   touch /path/to/custom-configs/zsh/.zshxenv
+   chmod 600 /path/to/custom-configs/zsh/.zshxenv
    ```
 
    Store API keys, private paths, VPN/work credentials, and other
@@ -58,7 +59,7 @@ to bootstrap or restore a workstation.
 5. Link the Neovim config:
 
    ```bash
-   ln -s ~/workspace/custom-configs/nvim ~/.config/nvim
+   ln -s /path/to/custom-configs/nvim ~/.config/nvim
    ```
 
 6. Install fonts if needed:
@@ -72,7 +73,8 @@ to bootstrap or restore a workstation.
 ## Zsh Notes
 
 - `zsh/.zshenv` sets versioned, non-sensitive defaults such as XDG paths,
-  `ZDOTDIR`, editor variables, Go, Composer, NPM, Neovim, and base PATH values.
+  `CUSTOM_CONFIGS_HOME`, `ZDOTDIR`, editor variables, Go, Composer, NPM,
+  Neovim, and base PATH values.
 - `zsh/.zshrc` loads `aliases`, every `zsh/lib/*.zsh` file, selected plugins,
   the `pimped` theme, completions, `~/.fzf.zsh`, `zoxide`, Google Cloud SDK
   shell integration, and `zsh/.zshxenv` when present.
@@ -88,12 +90,11 @@ to bootstrap or restore a workstation.
   files directly.
 - `zsh/.zshrc` can clone missing `zsh-users/*` plugins automatically. This
   requires network access and assumes GitHub availability.
-- `zsh/aliases` contains destructive convenience aliases and functions. Notably,
-  `rm` is aliased to `rm -fr`, and Docker cleanup aliases remove containers,
-  images, or both. Review aliases before using this config on a shared machine.
-- Some aliases reference old or machine-specific paths such as
-  `~/.config/.my-zsh`, `/home/roberto-araujo/vpn-files`, and
-  `$HOME/workspace`.
+- `zsh/aliases` avoids the previous forced recursive remove alias. `rm` now
+  uses interactive mode, and broad Docker cleanup helpers ask for confirmation
+  before destructive actions.
+- VPN aliases read the config path from `VPN_CONFIG_FILE`, which should be set
+  in `zsh/.zshxenv` or another local secret source.
 - Keep private machine-only values in an ignored local file such as
   `zsh/.zshxenv` instead of committing them.
 
@@ -144,11 +145,11 @@ to bootstrap or restore a workstation.
   - `prefix s`: vertical split with 20 percent size, opened in the current pane
     path.
   - `prefix e`: split with `-bf`.
-- `prefix r` reloads `~/workspace/custom-configs/.tmux.conf`.
+- `prefix r` reloads `.tmux.conf` from `CUSTOM_CONFIGS_HOME`.
 - Status line uses `battery_level.sh` and optionally `tmux_git_branch.sh`;
   ensure `scripts/` is on `PATH` or call helpers by absolute path.
-- `prefix g` runs `automation/gcloud-auth/init-auth.sh`, loads the result into
-  the tmux buffer, and pastes it.
+- `prefix g` runs `automation/gcloud-auth/init-auth.sh` from
+  `CUSTOM_CONFIGS_HOME`, loads the result into the tmux buffer, and pastes it.
 - TPM plugins are declared but TPM initialization is commented out. If TPM is
   desired, install it and restore the `run -b '~/.tmux/plugins/tpm/tpm'` line.
 
@@ -157,8 +158,8 @@ to bootstrap or restore a workstation.
 - `scripts/nerd-font.sh` downloads Fira Code v5.2 from GitHub, unzips it into
   `~/.local/share/fonts`, removes the downloaded zip, and runs `fc-cache -f`.
   It requires `curl`, `unzip`, and `fc-cache`.
-- `install_fonts.sh` appears to be an older or broken variant of the font
-  installer. Prefer `scripts/nerd-font.sh` unless this file is repaired.
+- `install_fonts.sh` is a compatibility wrapper around
+  `scripts/nerd-font.sh`.
 - `scripts/battery_level.sh` supports macOS through `pmset` and Linux through
   `upower`; otherwise it prints `N/A`.
 - `scripts/tmux_git_branch.sh` reads the active tmux pane path and prints the
@@ -216,16 +217,14 @@ to bootstrap or restore a workstation.
 - Sensitive environment variables have been moved out of tracked `.zshenv`.
   Keep them in ignored `zsh/.zshxenv` and rotate any values that were exposed
   before this split.
-- Multiple files contain hard-coded absolute paths under
-  `/home/roberto-araujo` or `$HOME/workspace/custom-configs`; these should be
-  parameterized if the repo is shared.
-- `install_fonts.sh` contains invalid commands and should either be fixed or
-  removed after confirming `scripts/nerd-font.sh` covers the use case.
-- `zsh/.zcompdump*`, Konsole cache/backup files, and `tmux-client-*.log` are
-  generated artifacts. Consider removing tracked generated files and expanding
-  `.gitignore`.
-- The Zsh aliases override basic commands (`rm`, `cp`, `mv`) and include broad
-  Docker cleanup commands. Use with care on production or shared hosts.
+- Some workstation-specific paths remain by design, such as optional local
+  tool locations and Konsole bookmarks. Prefer environment variables in
+  `zsh/.zshxenv` before adding new absolute paths.
+- Generated artifacts are ignored through `.gitignore`. Do not recommit
+  `.zcompdump*`, Konsole backup/cache files, or tmux client logs.
+- The Zsh aliases still change default behavior for common commands such as
+  `cp`, `mv`, and `rm`. Review them before installing this config on production
+  or shared hosts.
 - Submodule state should be checked after clone. A leading `-` in
   `git submodule status` means the submodule is not initialized in the current
   worktree.
