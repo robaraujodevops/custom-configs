@@ -30,13 +30,7 @@ export PATH="$GOBIN:$PATH"                                          # GOBIN
 export PATH="$NPM_BIN:$PATH"                                        # NPM
 export PATH="/opt/nvim-linux64/bin:$PATH"
 
-# SSH_PRIVATE_KEY
-export SSH_PRIVATE_KEY=$(cat ~/.ssh/id_ed25519)
-export SESSION_LOGIN=Y
-
 #GO
 export GO111MODULE=on
 export TERM="xterm-256color"
 
-#Impersonate
-export IMPERSONATE="y"

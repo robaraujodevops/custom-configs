@@ -112,3 +112,5 @@ if [ -f '/home/roberto-araujo/google-cloud-sdk/path.zsh.inc' ]; then . '/home/ro
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/roberto-araujo/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/roberto-araujo/google-cloud-sdk/completion.zsh.inc'; fi
+
+. "$HOME/.config/local/share/../bin/env"
