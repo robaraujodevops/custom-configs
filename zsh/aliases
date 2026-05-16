@@ -24,7 +24,14 @@ alias gr='git remote'
 alias grs='git remote show'
 alias glo='git log --pretty="oneline"'
 alias glol='git log --graph --oneline --decorate'
-alias glbr="git for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:relative) %(authorname)' refs/heads/ | head -n 5"
+function glbr() {
+  local last="${1:-5}"
+
+  git for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:relative) %(authorname)' refs/heads/ | head -n "${last}"
+}
+function gcka() {
+  git status --porcelain | awk -F ' ' '{print $2}' | xargs git checkout
+}
 function gcp() {
   git add .
   git commit -m "$1"
@@ -49,7 +56,7 @@ alias egrep='egrep --color=auto'
 # development
 # vim
 alias vim='nvim'
-alias vi='nvim'
+alias n='nvim'
 alias svim='sudoedit'
 alias dvim="vim -u /usr/share/nvim/archlinux.vim" # nvim with default config
 alias nvimc='rm -I $VIMCONFIG/swap/*'             # clean nvim swap file

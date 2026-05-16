@@ -19,3 +19,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.b.autoformat = true
   end,
 })
+vim.api.nvim_create_autocmd({ "FocusGained", "TermLeave", "BufEnter" }, {
+  command = "checktime",
+})
