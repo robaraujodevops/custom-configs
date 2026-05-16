@@ -1,5 +1,5 @@
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/robaraujodevops/.config/zsh/.zshrc'
+zstyle :compinstall filename "${ZDOTDIR:-$HOME/.config/zsh}/.zshrc"
 
 autoload -Uz compinit
 compinit

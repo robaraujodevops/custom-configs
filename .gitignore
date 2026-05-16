@@ -1,6 +1,9 @@
 zsh/.zhistory
 zsh/.histfile
-zsh/.zcompdump
+zsh/.zcompdump*
 zsh/.zshxenv
+konsole/*.bak
+konsole/*.tbcache
+tmux-client-*.log
 vim/autoload
 vim/undodir

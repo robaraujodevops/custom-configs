@@ -1,7 +1,8 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
-export ZDOTDIR="$HOME/workspace/custom-configs/zsh"
+export CUSTOM_CONFIGS_HOME="${CUSTOM_CONFIGS_HOME:-${${(%):-%x}:A:h:h}}"
+export ZDOTDIR="${ZDOTDIR:-$CUSTOM_CONFIGS_HOME/zsh}"
 
 # editor
 export EDITOR="nvim"
@@ -33,4 +34,3 @@ export PATH="/opt/nvim-linux64/bin:$PATH"
 #GO
 export GO111MODULE=on
 export TERM="xterm-256color"
-

@@ -29,6 +29,10 @@ cd ~/.config/custom-configs
 git submodule update --init --recursive
 ```
 
+The shell config derives `CUSTOM_CONFIGS_HOME` from the real path of the
+versioned `zsh/.zshenv` file. If you need to force another location, export
+`CUSTOM_CONFIGS_HOME` before loading the shell config.
+
 To use the Zsh configuration, install Zsh on the system, copy or symlink
 `zsh/.zshenv` into the `$HOME` directory, and set Zsh as the default shell:
 
@@ -53,6 +57,9 @@ To install the helper fonts:
 ./scripts/nerd-font.sh
 ```
 
+`install_fonts.sh` is kept as a compatibility wrapper around
+`scripts/nerd-font.sh`.
+
 ## Neovim
 
 The configuration in `nvim/` uses LazyVim. To enable it, point the Neovim
@@ -71,7 +78,9 @@ project.
   system, especially files under `etc/`.
 - Keep `.zshenv` free of secrets. Put sensitive environment variables in the
   ignored `zsh/.zshxenv` file instead.
+- Generated Zsh completion dumps, Konsole backup/cache files, and tmux client
+  logs are ignored and should not be committed.
 - Some scripts assume tools are already installed, such as `zsh`, `tmux`,
   `gcloud`, `curl`, `unzip`, and `fc-cache`.
-- The `install_fonts.sh` script appears to be an older variant of the font
-  installer. Prefer `scripts/nerd-font.sh`.
+- `rm` is intentionally aliased to interactive mode, and broad Docker cleanup
+  helpers ask for confirmation before destructive actions.
